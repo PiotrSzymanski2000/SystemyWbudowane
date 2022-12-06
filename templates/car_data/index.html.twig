@@ -6,15 +6,75 @@
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+     body {
+         background: linear-gradient(to right, #011a88, #13aecc);
+         font-family: 'Ubuntu', sans-serif;
+     }
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .styled-table thead tr {
+        background: linear-gradient(to right, #209eb9, #2141c9);
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid rgba(77, 185, 236, 0.73);
+    }
+
+    .styled-table tbody tr.active-row {
+        font-weight: bold;
+        color: rgba(43, 145, 190, 0.73);
+    }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <a style="background: linear-gradient(to top, #8fd9e8, #209eb9);;
+    display: inline-block; padding: 2em; border-radius: 25px; color: #0a0a0a" href="{{ path('app_logout') }}">Logout</a>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/piotrszymanski/Desktop/Studia/SystemyWbudowane/src/Controller/CarDataController.php'|file_link(0) }}">src/Controller/CarDataController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/piotrszymanski/Desktop/Studia/SystemyWbudowane/templates/car_data/index.html.twig'|file_link(0) }}">templates/car_data/index.html.twig</a></code></li>
-    </ul>
+<div style="
+    justify-content: center;
+    align-items: center;
+    display: flex;
+">
+
+    <table class="tg styled-table">
+        <thead>
+        <tr>
+            <th style="width: 10em" class="tg-0pky">ID</th>
+            <th style="width: 20em" class="tg-0lax">CREATED AT</th>
+            <th style="width: 20em" class="tg-0lax">DATA</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for data in carData %}
+        <tr style="background: linear-gradient(to right, #95dbee, #43a1b6)">
+            <td style="width: 10em"  class="tg-0lax">{{ data.id }}</td>
+            <td style="width: 20em" class="tg-0lax">{{ data.createdAt|date('d-m-Y H:i:s') }}</td>
+            <td style="width: 30em" class="tg-0lax">{{ data.data }}</td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
 </div>
 {% endblock %}
